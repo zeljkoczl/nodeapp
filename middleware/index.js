@@ -1,5 +1,5 @@
-var Comment = require("../models/comment");
-var Campground = require("../models/campground");
+let Comment = require("../models/comment");
+let Campground = require("../models/campground");
 module.exports = {
     isLoggedIn: function(req, res, next){
         if(req.isAuthenticated()){
@@ -40,4 +40,4 @@ module.exports = {
             res.redirect("login");
         }
     }
-}
+};

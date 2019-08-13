@@ -1,20 +1,20 @@
-var express     = require("express"),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose"),
-    passport    = require("passport"),
-    cookieParser = require("cookie-parser"),
-    LocalStrategy = require("passport-local"),
-    flash        = require("connect-flash"),
-    Campground  = require("./models/campground"),
-    Comment     = require("./models/comment"),
-    User        = require("./models/user"),
-    session = require("express-session"),
-    seedDB      = require("./seeds"),
-    methodOverride = require("method-override");
+const express     = require("express"),
+      app         = express(),
+      bodyParser  = require("body-parser"),
+      mongoose    = require("mongoose"),
+      passport    = require("passport"),
+      cookieParser = require("cookie-parser"),
+      LocalStrategy = require("passport-local"),
+      flash        = require("connect-flash"),
+      Campground  = require("./models/campground"),
+      Comment     = require("./models/comment"),
+      User        = require("./models/user"),
+      session = require("express-session"),
+      seedDB      = require("./seeds"),
+      methodOverride = require("method-override");
     
-//requiring routes
-var commentRoutes    = require("./routes/comments"),
+//routes
+let commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index");
     
@@ -25,11 +25,11 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride('_method'));
 app.use(cookieParser('secret'));
 
-// seedDB(); //seed the database
+// seedDB();
 
-// PASSPORT CONFIGURATION
+//PASSPORT 
 app.use(require("express-session")({
-    secret: "Once again Rusty wins cutest dog!",
+    secret: "supersecurephrase",
     resave: false,
     saveUninitialized: false
 }));
@@ -54,5 +54,5 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 app.listen(3000, function(){
-   console.log("The YelpCamp Server Has Started!");
+   console.log("The Server Has Started!");
 });
